@@ -8,7 +8,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productColour: ''
+      productColour: '',
+      frontMessage: '',
+      backMessage: '',
+      currentKeyEditing: 'front'
     };
 
     this.handleProductColourChange = this.handleProductColourChange.bind(this);
@@ -18,12 +21,32 @@ class App extends React.Component {
     this.setState({ productColour: e.target.value });
   };
 
+  updateKeyMessage = (position, message) => {
+    const { currentKeyEditing } = this.state;
+    console.log('position', position);
+
+    if (currentKeyEditing === '') {
+      this.setState({
+        frontMessage: message,
+        backMessage: message
+      });
+    }
+
+    if (currentKeyEditing === 'front')
+      this.setState({ frontMessage: message });
+    if (currentKeyEditing === 'back')
+      this.setState({ backMessage: message });
+  };
+
   render() {
     return (
       <div className="App">
         <ProductColours onProductColourChange={this.handleProductColourChange}/>
         <h3>Editeaza fata brelocului</h3>
-        <Panel />
+        <Panel setKeyMessage={this.updateKeyMessage}
+               updateKeyMessage={this.updateKeyMessage}
+              currentKeyEditing={this.state.currentKeyEditing}
+        />
       </div>
     );
   }

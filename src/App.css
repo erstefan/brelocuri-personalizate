@@ -39,6 +39,7 @@
 }
 
 .panels__wrapper {
+
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -52,6 +53,7 @@
 }
 
 .tab-content {
+    min-width: 350px;
     border: 1px solid #ccc;
     padding: 20px;
     margin-top: 15px;

@@ -1,8 +1,24 @@
 import React from "react";
 import {Tabs, TabContent, TabLink} from "react-tabs-redux";
-import styled from "styled-components";
+import PredefinedMessage from "../PredefinedMessage/index";
+import PropTypes from "prop-types";
 
 class Panel extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.handlePredefinedMessage = this.handlePredefinedMessage.bind(this);
+    this.updateKeyMessage = this.updateKeyMessage.bind(this);
+  }
+
+  handlePredefinedMessage = e => {
+    console.log(e);
+  };
+
+  updateKeyMessage = (position, message) => {
+    this.props.setKeyMessage(position, message);
+  };
 
   render() {
     return (
@@ -14,13 +30,23 @@ class Panel extends React.Component {
          <TabLink to={"customise"}>Personalizare</TabLink>
        </div>
 
-
-
         <div className="panels__wrapper">
           <TabContent for="message">
-            <p>1. Niciodata sa nu accelerezi mai tare</p>
-            <p>2. Oriunde vei merge...</p>
-            <p>3. Ai grija cum conduci</p>
+            <PredefinedMessage
+              updateKeyMessage={this.updateKeyMessage}
+              message={"Niciodata sa nu accelerezi mai tare"}
+              currentKeyEditing={this.props.currentKeyEditing}
+            />
+            <PredefinedMessage
+              updateKeyMessage={this.updateKeyMessage}
+              message={"Oriunde vei merge..."}
+              currentKeyEditing={this.props.currentKeyEditing}
+            />
+            <PredefinedMessage
+              updateKeyMessage={this.updateKeyMessage}
+              message={"Ai grija cum conduci"}
+              currentKeyEditing={this.props.currentKeyEditing}
+            />
           </TabContent>
 
           <TabContent for={"plate"}>
@@ -36,6 +62,11 @@ class Panel extends React.Component {
   }
 }
 
+Panel.propTypes = {
+  updateKeyMessage: PropTypes.func.isRequired,
+  currentKeyEditing: PropTypes.string.isRequired,
+  setKeyMessage: PropTypes.func.isRequired
+};
 
 
 export default Panel;
