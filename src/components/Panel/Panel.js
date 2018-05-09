@@ -2,6 +2,7 @@ import React from "react";
 import {Tabs, TabContent, TabLink} from "react-tabs-redux";
 import PredefinedMessage from "../PredefinedMessage/index";
 import PropTypes from "prop-types";
+import PlateNumberForm from "../../PlateNumberForm/index";
 
 class Panel extends React.Component {
 
@@ -10,6 +11,7 @@ class Panel extends React.Component {
 
     this.handlePredefinedMessage = this.handlePredefinedMessage.bind(this);
     this.updateKeyMessage = this.updateKeyMessage.bind(this);
+    this.handlePlateNumber = this.handlePlateNumber.bind(this);
   }
 
   handlePredefinedMessage = e => {
@@ -19,6 +21,12 @@ class Panel extends React.Component {
   updateKeyMessage = (position, message) => {
     this.props.setKeyMessage(position, message);
   };
+
+  handlePlateNumber = data => {
+    // Needs field validation
+    this.props.setPlateNumber(data);
+  };
+
 
   render() {
     return (
@@ -50,7 +58,7 @@ class Panel extends React.Component {
           </TabContent>
 
           <TabContent for={"plate"}>
-            <input type="text" placeholder={'Numar auto'}/>
+            <PlateNumberForm handlePlateNumber={this.handlePlateNumber} />
           </TabContent>
 
           <TabContent for={"customise"}>
@@ -65,7 +73,8 @@ class Panel extends React.Component {
 Panel.propTypes = {
   updateKeyMessage: PropTypes.func.isRequired,
   currentKeyEditing: PropTypes.string.isRequired,
-  setKeyMessage: PropTypes.func.isRequired
+  setKeyMessage: PropTypes.func.isRequired,
+  setPlateNumber: PropTypes.func.isRequired
 };
 
 
