@@ -3,6 +3,7 @@ import {Tabs, TabContent, TabLink} from "react-tabs-redux";
 import PredefinedMessage from "../PredefinedMessage/index";
 import PropTypes from "prop-types";
 import PlateNumberForm from "../../PlateNumberForm/index";
+import ColorPicker from "../ColorPicker/index";
 
 class Panel extends React.Component {
 
@@ -62,7 +63,11 @@ class Panel extends React.Component {
           </TabContent>
 
           <TabContent for={"customise"}>
-            <span>Personalizare....</span>
+            <div className="custom__text">
+              <input type="text" placeholder={"Introduceti textul dorit"} />
+            </div>
+
+            <ColorPicker />
           </TabContent>
         </div>
       </Tabs>
