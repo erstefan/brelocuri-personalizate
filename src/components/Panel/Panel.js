@@ -28,6 +28,9 @@ class Panel extends React.Component {
     this.props.setPlateNumber(data);
   };
 
+  getTextColour = colour => {
+    this.props.setTextColour(colour);
+  };
 
   render() {
     return (
@@ -67,7 +70,7 @@ class Panel extends React.Component {
               <input type="text" placeholder={"Introduceti textul dorit"} />
             </div>
 
-            <ColorPicker />
+            <ColorPicker getTextColour={this.getTextColour} />
           </TabContent>
         </div>
       </Tabs>
@@ -79,7 +82,8 @@ Panel.propTypes = {
   updateKeyMessage: PropTypes.func.isRequired,
   currentKeyEditing: PropTypes.string.isRequired,
   setKeyMessage: PropTypes.func.isRequired,
-  setPlateNumber: PropTypes.func.isRequired
+  setPlateNumber: PropTypes.func.isRequired,
+  setTextColour: PropTypes.func.isRequired
 };
 
 

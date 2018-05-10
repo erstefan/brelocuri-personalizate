@@ -12,6 +12,7 @@ class App extends React.Component {
       frontMessage: '',
       backMessage: '',
       currentKeyEditing: 'front',
+      textColour: '#222',
       plateNumber: {
         city: '',
         number: '',
@@ -21,6 +22,7 @@ class App extends React.Component {
 
     this.handleProductColourChange = this.handleProductColourChange.bind(this);
     this.setPlateNumber = this.setPlateNumber.bind(this);
+    this.setTextColour = this.setTextColour.bind(this);
   }
 
   handleProductColourChange = e => {
@@ -53,6 +55,10 @@ class App extends React.Component {
     }));
   };
 
+  setTextColour = c => {
+    this.setState({ textColour: c });
+  };
+
   render() {
     return (
       <div className="App">
@@ -63,6 +69,7 @@ class App extends React.Component {
                updateKeyMessage={this.updateKeyMessage}
                currentKeyEditing={this.state.currentKeyEditing}
                setPlateNumber={this.setPlateNumber}
+               setTextColour={this.setTextColour}
         />
       </div>
     );
