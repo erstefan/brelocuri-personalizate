@@ -45,9 +45,8 @@ class ProductColours extends React.Component {
 }
 
 ProductColours.propTypes = {
-  setFontColour: PropTypes.func.isRequired
+  updateColour: PropTypes.func.isRequired
 };
-
 
 
 const ProductColoursWrapper = styled.div`

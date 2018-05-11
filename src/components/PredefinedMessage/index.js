@@ -1,19 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Message from "./PredefinedMessage.style";
+import {connect} from "react-redux";
+import {updateFrontAndBackMessage} from "../../actions/index";
 
 
 const PredefinedMessage = ({
   message,
-  handlePredefinedMessage,
-  updateKeyMessage,
-  currentKeyEditing
+ updateMessage
 }) => {
 
   let handleClick = e => {
     e.preventDefault();
-
-    updateKeyMessage(currentKeyEditing, message);
+    updateMessage(message);
   };
 
   return (
@@ -22,9 +21,15 @@ const PredefinedMessage = ({
 };
 
 PredefinedMessage.propTypes = {
-  message: PropTypes.string.isRequired,
-  updateKeyMessage: PropTypes.func.isRequired,
-  currentKeyEditing: PropTypes.string.isRequired
+  message: PropTypes.string.isRequired
 };
 
-export default PredefinedMessage;
+const mapDispatchToProps = dispatch => {
+  return {
+    updateMessage: message => {
+      dispatch(updateFrontAndBackMessage(message))
+    }
+  }
+};
+
+export default connect(null, mapDispatchToProps)(PredefinedMessage);

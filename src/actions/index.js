@@ -1,5 +1,6 @@
 import {
-  SET_PLATE_NUMBER, SET_TEXT_COLOUR, UPDATE_KEY_BACK_MESSAGE, UPDATE_KEY_FRONT_MESSAGE,
+  SET_PLATE_NUMBER, SET_TEXT_COLOUR, UPDATE_FRONT_AND_BACK_KEY_MESSAGE, UPDATE_KEY_BACK_MESSAGE,
+  UPDATE_KEY_FRONT_MESSAGE,
   UPDATE_PRODUCT_COLOUR
 } from "../constants/action-types";
 
@@ -15,6 +16,11 @@ export const updateKeyFrontMessage = message => ({
 
 export const updateKeyBackMessage = message => ({
   type: UPDATE_KEY_BACK_MESSAGE,
+  message
+});
+
+export const updateFrontAndBackMessage = message => ({
+  type: UPDATE_FRONT_AND_BACK_KEY_MESSAGE,
   message
 });
 

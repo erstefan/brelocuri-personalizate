@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import PlateNumberForm from "../../PlateNumberForm/index";
 import ColorPicker from "../ColorPicker/index";
 import KeyTextMessage from "../KeyTextMessage/index";
+import {setTextColour, updateFrontAndBackMessage} from "../../actions/index";
+import {connect} from "react-redux";
 
 class Panel extends React.Component {
 
@@ -34,7 +36,7 @@ class Panel extends React.Component {
   };
 
   getFrontAndBackProp = value => {
-    this.props.setFrontAndBack(value);
+    this.props.updateKeyMessages(value);
   };
 
   render() {
@@ -100,4 +102,15 @@ Panel.propTypes = {
 };
 
 
-export default Panel;
+const mapDispatchToProps = dispatch => {
+  return {
+    updateKeyMessages : message => {
+      dispatch(updateFrontAndBackMessage(message));
+    },
+    setTextColour: colour => {
+      dispatch(setTextColour(colour));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Panel);

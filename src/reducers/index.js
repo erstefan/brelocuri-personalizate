@@ -1,14 +1,14 @@
 
 import {
-  SET_PLATE_NUMBER, SET_TEXT_COLOUR, UPDATE_KEY_BACK_MESSAGE, UPDATE_KEY_FRONT_MESSAGE,
+  SET_PLATE_NUMBER, SET_TEXT_COLOUR, UPDATE_FRONT_AND_BACK_KEY_MESSAGE, UPDATE_KEY_BACK_MESSAGE,
+  UPDATE_KEY_FRONT_MESSAGE,
   UPDATE_PRODUCT_COLOUR
 } from "../constants/action-types";
 
 const initialState = {
   productColour: 'red',
-  frontMessage: 'qweqwe',
-  backMessage: 'qweqwe',
-  // currentKeyEditing: 'front',
+  frontMessage: '',
+  backMessage: '',
   textColour: '',
   plateNumber: ''
 };
@@ -28,6 +28,12 @@ const rootReducer = (state = initialState, action = {}) => {
     case UPDATE_KEY_BACK_MESSAGE:
       return {
         ...state,
+        backMessage: action.message,
+      };
+    case UPDATE_FRONT_AND_BACK_KEY_MESSAGE:
+      return {
+        ...state,
+        frontMessage: action.message,
         backMessage: action.message,
       };
     case SET_PLATE_NUMBER:
