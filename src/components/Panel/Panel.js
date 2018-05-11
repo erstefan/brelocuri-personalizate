@@ -4,6 +4,7 @@ import PredefinedMessage from "../PredefinedMessage/index";
 import PropTypes from "prop-types";
 import PlateNumberForm from "../../PlateNumberForm/index";
 import ColorPicker from "../ColorPicker/index";
+import KeyTextMessage from "../KeyTextMessage/index";
 
 class Panel extends React.Component {
 
@@ -32,7 +33,14 @@ class Panel extends React.Component {
     this.props.setTextColour(colour);
   };
 
+  getFrontAndBackProp = value => {
+    this.props.setFrontAndBack(value);
+  };
+
   render() {
+
+    const { frontAndBack } = this.props;
+
     return (
       <Tabs className={'tabs__wrapper'}>
 
@@ -67,7 +75,10 @@ class Panel extends React.Component {
 
           <TabContent for={"customise"}>
             <div className="custom__text">
-              <input type="text" placeholder={"Introduceti textul dorit"} />
+              <KeyTextMessage
+                frontAndBack={frontAndBack}
+                updateFrontAndBack={this.getFrontAndBackProp}
+              />
             </div>
 
             <ColorPicker getTextColour={this.getTextColour} />
@@ -83,7 +94,9 @@ Panel.propTypes = {
   currentKeyEditing: PropTypes.string.isRequired,
   setKeyMessage: PropTypes.func.isRequired,
   setPlateNumber: PropTypes.func.isRequired,
-  setTextColour: PropTypes.func.isRequired
+  setTextColour: PropTypes.func.isRequired,
+  frontAndBack: PropTypes.bool.isRequired,
+  setFrontAndBack: PropTypes.func.isRequired,
 };
 
 

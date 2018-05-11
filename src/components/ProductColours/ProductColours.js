@@ -1,13 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {updateProductColour} from "../../actions/index";
 
 class ProductColours extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {};
+
+    this.handleChange = this.handleChange.bind(this)
   }
+
+  handleChange = e => {
+    this.props.updateColour(e.target.value);
+  };
 
   render() {
     return (
@@ -16,7 +24,7 @@ class ProductColours extends React.Component {
           <label htmlFor="productSilver">Silver
             <input type="radio"
                    name={"product_colour"}
-                   onChange={this.props.onProductColourChange}
+                   onClick={this.handleChange}
                    value={"silver"}
                    id="productSilver"/>
           </label>
@@ -27,7 +35,7 @@ class ProductColours extends React.Component {
             <input type="radio"
                    name={"product_colour"}
                    id="productGold"
-                   onChange={this.props.onProductColourChange}
+                   onClick={this.handleChange}
                    value={"gold"}/>
           </label>
         </div>
@@ -37,8 +45,10 @@ class ProductColours extends React.Component {
 }
 
 ProductColours.propTypes = {
-  onProductColourChange: PropTypes.func.isRequired
+  setFontColour: PropTypes.func.isRequired
 };
+
+
 
 const ProductColoursWrapper = styled.div`
   display: flex;
@@ -53,4 +63,12 @@ const ProductColoursWrapper = styled.div`
   }
 `;
 
-export default ProductColours;
+const mapDispatchToProps = dispatch => {
+  return {
+    updateColour: colour => {
+      dispatch(updateProductColour(colour))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProductColours);
